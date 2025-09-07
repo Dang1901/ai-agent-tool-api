@@ -6,9 +6,9 @@ from sqlalchemy.exc import OperationalError
 
 from app.db.database import get_engine      # engine phải được tạo từ ENV trong app.db.database
 from app.db import Base                     # import để SQLAlchemy biết model
-from app.model import user, feature as feature_model, rbac as rbac_model, abac as abac_model
-from app.routers import auth, feature, rbac, abac
-from app.routers import user as user_router
+# from app.model import user, feature as feature_model, rbac as rbac_model, abac as abac_model
+# from app.routers import auth, feature, rbac, abac
+# from app.routers import user as user_router
 # from app.core.config import mask_db_url  # Sử dụng function local thay vì import
 
 
@@ -93,8 +93,9 @@ def health_check():
 
 
 # ==== Routers ====
-app.include_router(auth.router)
-app.include_router(user_router.router)
-app.include_router(feature.router)
-app.include_router(rbac.router)
-app.include_router(abac.router)
+# Tạm thời comment out để test
+# app.include_router(auth.router)
+# app.include_router(user_router.router)
+# app.include_router(feature.router)
+# app.include_router(rbac.router)
+# app.include_router(abac.router)
