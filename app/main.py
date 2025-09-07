@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
 from sqlalchemy.exc import OperationalError
 
-from app.db.database import engine          # engine phải được tạo từ ENV trong app.db.database
+from app.db.database import get_engine      # engine phải được tạo từ ENV trong app.db.database
 from app.db import Base                     # import để SQLAlchemy biết model
 from app.model import user, feature as feature_model, rbac as rbac_model, abac as abac_model
 from app.routers import auth, feature, rbac, abac
@@ -62,6 +62,9 @@ async def startup_event():
     print("→ Using DATABASE_URL:", _mask_db_url(db_url))
 
     try:
+        # Lazy initialization của engine
+        engine = get_engine()
+        
         # Test kết nối trước
         with engine.connect() as conn:
             conn.execute(text("SELECT 1"))
